@@ -12,7 +12,7 @@
 * サンプルプログラムの利用方法
 
 ```
-1. git clone https://github.com/bylomedia/MovizoPlayer.git
+1. git clone https://github.com/bylomedia/movizo-player-ios.git
 2. cd MovizoPlayer/Example/DemoPlayer
 3. pod install
 ```
