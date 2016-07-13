@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "MovizoPlayer"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "iOS Video Player SDK for MOVIZO Service."
 
 # This description is used to generate tags and improve search results.
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
                        You can easily create a video player to play the video of MOVIZO Service.
                        DESC
 
-  s.homepage         = "https://github.com/bylomedia/MovizoPlayer"
+  s.homepage         = "https://github.com/bylomedia/movizo-player-ios"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "bylomedia" => "info@bylo.jp" }
