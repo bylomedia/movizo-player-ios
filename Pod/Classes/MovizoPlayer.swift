@@ -70,7 +70,7 @@ public class MovizoPlayer: AVPlayer {
         )
         
         // 動画終了のNotification
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playerItemDidReachEnd), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.currentItem)
     }
     
     // 再生停止
