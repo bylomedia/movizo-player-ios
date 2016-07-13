@@ -13,7 +13,7 @@
 
 ```
 1. git clone https://github.com/bylomedia/movizo-player-ios.git
-2. cd MovizoPlayer/Example/DemoPlayer
+2. cd movizo-player-ios/Example/DemoPlayer
 3. pod install
 ```
 
