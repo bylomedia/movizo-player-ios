@@ -20,7 +20,7 @@ public struct MovizoUtil {
     // デバイスID保存ファイル名
     public static let DEVICE_ID_FILENAME = "deviceinfo"
     // レポートURLのパス(prefix)
-    public static let MZ_REPORT_URL = "http://report.movizo.jp/playlog"
+    public static let MZ_REPORT_URL = "https://s3-ap-northeast-1.amazonaws.com/report.movizo.jp/playlog"
     
     // 配信方法
     public enum Format {
