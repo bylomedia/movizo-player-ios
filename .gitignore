@@ -61,3 +61,7 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+
+
+Example/DemoPlayer/Pods
+Example/DemoPlayer/Podfile.lock

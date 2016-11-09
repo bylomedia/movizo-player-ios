@@ -46,17 +46,31 @@ public class MovizoPlayer: AVPlayer {
     // 視聴ログを送信する間隔(s)
     public var interval: Float64 = 10.0
     
+    // 旧仕様: /ACCOUNT-ID/MOVIE-ID/movie.FORMAT
     public func loadMovie(accountID: String, movieID: String, format: MovizoUtil.Format) {
-
+        self.loadMovie(accountID, movieID: movieID, profileID: nil, fileName: MovizoUtil.DEFAULT_MOVIE_NAME, format: format)
+    }
+    
+    // 新仕様: /ACCOUNT-ID/MOVIE-ID/PROFIME-ID.FORMAT
+    public func loadMovie(accountID: String, movieID: String, profileID: String, format: MovizoUtil.Format) {
+        self.loadMovie(accountID, movieID: movieID, profileID: profileID, fileName: MovizoUtil.DEFAULT_MOVIE_NAME, format: format)
+    }
+    
+    private func loadMovie(accountID: String, movieID: String, profileID: String?, fileName: String, format: MovizoUtil.Format) {
+        
         // 動画を読み込む
-        let path:String = MovizoUtil.MZ_MOVIE_PREFIX + "/" + accountID + "/" + movieID + "/" + MovizoUtil.DEFAULT_MOVIE_NAME + "." + MovizoUtil.formatToSuffix(format)
+        var path:String = MovizoUtil.MZ_MOVIE_PREFIX
+        path += "/" + accountID
+        path += "/" + movieID
+        path += "/" + (profileID != nil ? profileID! : fileName)
+        path += "." + MovizoUtil.formatToSuffix(format)
         let url = NSURL(scheme: "https", host: MovizoUtil.MZ_MOVIE_HOST, path:path)
         super.replaceCurrentItemWithPlayerItem(AVPlayerItem(URL: url!))
         
         // レポーター作成
-        movizoReporter = MovizoReporter(accountId: accountID, movieId: movieID,fileName: MovizoUtil.DEFAULT_MOVIE_NAME, duration: (self.currentItem?.asset.duration)!)
+        movizoReporter = MovizoReporter(accountId: accountID, movieId: movieID, fileName: fileName, duration: (self.currentItem?.asset.duration)!)
     }
-    
+
     // 再生開始
     public override func play() {
         super.play()
@@ -70,7 +84,7 @@ public class MovizoPlayer: AVPlayer {
         )
         
         // 動画終了のNotification
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playerItemDidReachEnd), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.currentItem)
     }
     
     // 再生停止

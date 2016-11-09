@@ -21,9 +21,17 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MovizoPlayerを作成し、アカウントID、動画ID、再生方法を指定して動画を読み込む
+        // MovizoPlayerを作成し、動画を読み込む
         self.player = MovizoPlayer()
-        self.player!.loadMovie("AAAAAAAA", movieID: "MMMMMMMM", format: MovizoUtil.Format.HLS)
+
+        // MOVIZOのアカウントID,動画ID,プロファイルID、および配信方法をセットします。
+        // 各IDはMOVIZOコンソール(https://console.movizo.jp)で確認できます。
+        // 配信方法はストリーミング(MovizoUtil.Format.Streaming)・プログレッシブダウンロード(MovizoUtil.Format.Progressive)・インライン(MovizoUtil.Format.Inline)のいずれかです。
+        // プロファイルIDと一致する配信方法を記述してください。
+        //
+        // ここではサンプル動画として、
+        // アカウントID="AAAAAAAA",動画ID="MMMMMMMM",プロファイルID="PPPPPPPP",配信方法=MovizoUtil.Format.Streaming を指定しています。
+        self.player!.loadMovie("AAAAAAAA", movieID: "MMMMMMMM", profileID: "PPPPPPPP", format: MovizoUtil.Format.Streaming)
 
         // AVPlayerViewControllerを作成し、本Viewに追加
         self.playerController = AVPlayerViewController()

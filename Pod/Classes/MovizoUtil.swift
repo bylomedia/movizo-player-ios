@@ -10,7 +10,7 @@ import Foundation
 
 public struct MovizoUtil {
     // バージョン
-    public static let VERSION = "0.9"
+    public static let VERSION = "1.0"
     // 動画のホスト名
     public static let MZ_MOVIE_HOST = "movie.movizo.jp"
     // 動画URLのパス(prefix)
@@ -24,13 +24,21 @@ public struct MovizoUtil {
     
     // 配信方法
     public enum Format {
-        case M4V
-        case HLS
+        case Streaming
+        case Progressive
+        case Inline
     }
 
     // 配信方法から拡張子を得る
     public static func formatToSuffix(format: MovizoUtil.Format) -> String {
-        return format == MovizoUtil.Format.M4V ? "m4v" : "m3u8"
+        switch format {
+            case MovizoUtil.Format.Streaming:
+                return "m3u8"
+            case MovizoUtil.Format.Progressive:
+                return "m4v"
+            case MovizoUtil.Format.Inline:
+                return "m4v"
+        }
     }
 
     // デバイスIDを生成
